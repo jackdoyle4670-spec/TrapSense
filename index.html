@@ -6,127 +6,93 @@
 
 <title>TrapSense – Greyhound Racing Reference Platform</title>
 
-<meta name="description" content="TrapSense is an independent greyhound racing reference platform covering UK and Ireland tracks and trainers. It provides clear, neutral insight into track layouts, trainer background, and race context without predictions or betting advice.">
-<meta name="keywords" content="greyhound racing, greyhound tracks UK, greyhound trainers Ireland, greyhound racing information">
+<meta name="description" content="TrapSense is an independent greyhound racing reference platform covering every active UK and Ireland track. It provides neutral, factual information on greyhound racing venues without predictions or betting advice.">
+<meta name="keywords" content="greyhound tracks UK, greyhound tracks Ireland, greyhound racing reference">
 <meta name="author" content="TrapSense">
-<meta name="theme-color" content="#12141c">
+<meta name="theme-color" content="#0e1016">
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: system-ui, sans-serif;
   background: #0e1016;
   color: #e5e7eb;
 }
-
-/* HEADER */
 header {
-  padding: 26px 18px;
-  background: linear-gradient(135deg, #1a2033, #11131a);
-}
-
-header h1 {
-  margin: 0;
-  font-size: 1.9rem;
-  letter-spacing: 0.5px;
-}
-
-header p {
-  margin-top: 8px;
-  font-size: 0.95rem;
-  color: #9ca3af;
-  max-width: 480px;
-}
-
-/* SEARCH */
-.search {
-  padding: 16px;
-  background: #11131a;
+  padding: 28px 18px;
+  background: linear-gradient(135deg,#1a2033,#0e1016);
   border-bottom: 1px solid #1f2933;
 }
-
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+header p {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #9ca3af;
+  max-width: 520px;
+}
+.search {
+  padding: 16px;
+  border-bottom: 1px solid #1f2933;
+}
 .search input {
   width: 100%;
-  padding: 13px;
-  border-radius: 12px;
+  padding: 14px;
+  border-radius: 14px;
   border: none;
   background: #1b1f2a;
   color: #e5e7eb;
-  font-size: 0.95rem;
 }
-
-/* NAV */
 nav {
   display: flex;
   gap: 10px;
   padding: 14px 16px;
-  background: #0e1016;
+  background: #0b0d12;
   border-bottom: 1px solid #1f2933;
-  overflow-x: auto;
 }
-
 nav button {
   background: #1b1f2a;
-  border: none;
+  border: 1px solid #1f2933;
   color: #e5e7eb;
-  padding: 9px 16px;
+  padding: 9px 18px;
   border-radius: 999px;
   font-size: 0.8rem;
-  white-space: nowrap;
 }
-
-/* SECTIONS */
 .section {
-  padding: 22px 16px;
+  padding: 24px 16px;
 }
-
 .section h2 {
-  margin-bottom: 18px;
-  font-size: 1.1rem;
   color: #60a5fa;
-  letter-spacing: 0.3px;
+  margin-bottom: 16px;
 }
-
-/* CARDS */
 .card {
   background: #151923;
   border-radius: 16px;
-  padding: 18px;
-  margin-bottom: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
   border: 1px solid #1f2933;
 }
-
 .card h3 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   font-size: 1rem;
 }
-
 .card p {
-  margin: 4px 0;
+  margin: 0;
   font-size: 0.85rem;
   color: #9ca3af;
-  line-height: 1.4;
 }
-
-/* FOOTER */
 footer {
   padding: 24px 16px;
-  background: #0b0d12;
-  border-top: 1px solid #1f2933;
   text-align: center;
   font-size: 0.75rem;
   color: #9ca3af;
-  line-height: 1.6;
+  background: #07080c;
+  border-top: 1px solid #1f2933;
 }
-
-/* UTILITY */
-.hidden {
-  display: none;
-}
+.hidden { display:none; }
 </style>
 </head>
 
@@ -134,96 +100,14 @@ footer {
 
 <header>
   <h1>TrapSense</h1>
-  <p>Independent greyhound racing reference platform covering tracks and trainers across the UK and Ireland.</p>
+  <p>Independent greyhound racing reference platform covering the UK & Ireland.</p>
 </header>
 
 <div class="search">
-  <input type="text" id="searchBox" placeholder="Search tracks or trainers…" onkeyup="searchContent()">
+  <input type="text" id="searchBox" placeholder="Search tracks…" onkeyup="searchContent()">
 </div>
 
 <nav>
   <button onclick="show('tracks')">Tracks</button>
-  <button onclick="show('trainers')">Trainers</button>
   <button onclick="show('about')">About</button>
 </nav>
-
-<!-- TRACKS -->
-<section id="tracks" class="section searchable">
-  <h2>Greyhound Tracks</h2>
-
-  <div class="card">
-    <h3>Monmore Green</h3>
-    <p>Track type: Tight circuit</p>
-    <p>Notes: Short run to the first bend. Early positioning is often important.</p>
-  </div>
-
-  <div class="card">
-    <h3>Central Park</h3>
-    <p>Track type: Standard oval</p>
-    <p>Notes: Balanced layout across common race distances.</p>
-  </div>
-
-  <div class="card">
-    <h3>Shelbourne Park</h3>
-    <p>Track type: Wide-bend circuit</p>
-    <p>Notes: Frequently suits strong-finishing runners.</p>
-  </div>
-</section>
-
-<!-- TRAINERS -->
-<section id="trainers" class="section searchable hidden">
-  <h2>Trainer Directory</h2>
-
-  <div class="card">
-    <h3>Paul Hennessy</h3>
-    <p>Irish trainer associated with major competitions and graded racing.</p>
-  </div>
-
-  <div class="card">
-    <h3>Phil Milner</h3>
-    <p>Trainer known for preparing sprint-distance greyhounds.</p>
-  </div>
-
-  <div class="card">
-    <h3>Seamus Cahill</h3>
-    <p>Trainer focused on developing younger greyhounds through graded races.</p>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="section hidden">
-  <h2>About TrapSense</h2>
-
-  <div class="card">
-    <p>
-      TrapSense is an independent greyhound racing reference platform designed to help users
-      better understand the sport through neutral, factual information.
-    </p>
-    <p>
-      The site focuses on track layouts, trainer background, and race context across the UK
-      and Ireland. TrapSense does not offer predictions, tips, betting advice, or automated analysis.
-    </p>
-  </div>
-</section>
-
-<footer>
-  TrapSense is an independent information platform.<br>
-  No betting advice • No predictions • Informational use only.
-</footer>
-
-<script>
-function show(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-}
-
-function searchContent() {
-  const input = document.getElementById('searchBox').value.toLowerCase();
-  document.querySelectorAll('.searchable .card').forEach(card => {
-    card.style.display = card.innerText.toLowerCase().includes(input) ? 'block' : 'none';
-  });
-}
-</script>
-
-</body>
-</html>

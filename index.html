@@ -68,6 +68,66 @@ footer{
   background:#07080c;
   border-top:1px solid #1f2933;
 }
+
+/* AI SUPPORT */
+#supportBtn{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  background:#2563eb;
+  color:#fff;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  cursor:pointer;
+  z-index:100;
+}
+
+#supportBox{
+  position:fixed;
+  bottom:80px;
+  right:18px;
+  width:280px;
+  max-height:420px;
+  background:#0f172a;
+  border:1px solid #1f2933;
+  border-radius:14px;
+  display:flex;
+  flex-direction:column;
+  z-index:100;
+}
+
+.support-header{
+  padding:10px;
+  font-size:.85rem;
+  background:#020617;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+#supportMessages{
+  padding:10px;
+  flex:1;
+  overflow:auto;
+  font-size:.8rem;
+}
+
+#supportMessages div{
+  margin-bottom:8px;
+}
+
+#supportInput{
+  border:none;
+  border-top:1px solid #1f2933;
+  padding:10px;
+  background:#020617;
+  color:white;
+}
 </style>
 </head>
 
@@ -87,7 +147,6 @@ footer{
   >
 </div>
 
-<!-- TRACKS SECTION — HIDDEN BY DEFAULT -->
 <section id="tracks" class="section hidden">
   <p class="note">Matching tracks:</p>
 
@@ -103,30 +162,4 @@ footer{
 </section>
 
 <footer>
-  TrapSense • Informational reference only • No betting advice or analytics
-</footer>
-
-<script>
-function filterTracks(){
-  const q = document.getElementById('searchBox').value.toLowerCase().trim();
-  const section = document.getElementById('tracks');
-  const cards = section.querySelectorAll('.card');
-
-  if(q === ''){
-    section.classList.add('hidden');
-    cards.forEach(c => c.style.display = 'none');
-    return;
-  }
-
-  section.classList.remove('hidden');
-
-  cards.forEach(card => {
-    card.style.display = card.innerText.toLowerCase().includes(q)
-      ? 'block'
-      : 'none';
-  });
-}
-</script>
-
-</body>
-</html>
+  TrapSense • Informational reference

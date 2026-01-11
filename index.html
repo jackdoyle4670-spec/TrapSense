@@ -69,49 +69,44 @@ footer{
   border-top:1px solid #1f2933;
 }
 
-/* AI SUPPORT */
-#supportBtn{
+/* SIDE AI SUPPORT */
+#supportTab{
   position:fixed;
-  bottom:18px;
-  right:18px;
+  top:40%;
+  right:0;
   background:#2563eb;
-  color:#fff;
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
+  color:white;
+  padding:10px 12px;
+  border-radius:12px 0 0 12px;
   cursor:pointer;
+  font-size:.8rem;
   z-index:100;
 }
 
 #supportBox{
   position:fixed;
-  bottom:80px;
-  right:18px;
-  width:280px;
-  max-height:420px;
+  top:0;
+  right:0;
+  width:300px;
+  height:100%;
   background:#0f172a;
-  border:1px solid #1f2933;
-  border-radius:14px;
+  border-left:1px solid #1f2933;
   display:flex;
   flex-direction:column;
-  z-index:100;
+  z-index:101;
 }
 
 .support-header{
-  padding:10px;
-  font-size:.85rem;
+  padding:12px;
   background:#020617;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  font-size:.85rem;
 }
 
 #supportMessages{
-  padding:10px;
+  padding:12px;
   flex:1;
   overflow:auto;
   font-size:.8rem;
@@ -124,7 +119,7 @@ footer{
 #supportInput{
   border:none;
   border-top:1px solid #1f2933;
-  padding:10px;
+  padding:12px;
   background:#020617;
   color:white;
 }
@@ -162,4 +157,78 @@ footer{
 </section>
 
 <footer>
-  TrapSense • Informational reference
+  TrapSense • Informational reference only • No betting advice or analytics
+</footer>
+
+<!-- SIDE SUPPORT -->
+<div id="supportTab" onclick="openSupport()">Support</div>
+
+<div id="supportBox" class="hidden">
+  <div class="support-header">
+    TrapSense Support
+    <span onclick="closeSupport()">✕</span>
+  </div>
+  <div id="supportMessages"></div>
+  <input id="supportInput" placeholder="Ask a question…" onkeydown="if(event.key==='Enter')sendSupport()">
+</div>
+
+<script>
+function filterTracks(){
+  const q = document.getElementById('searchBox').value.toLowerCase().trim();
+  const section = document.getElementById('tracks');
+  const cards = section.querySelectorAll('.card');
+
+  if(q === ''){
+    section.classList.add('hidden');
+    cards.forEach(c => c.style.display = 'none');
+    return;
+  }
+
+  section.classList.remove('hidden');
+
+  cards.forEach(card => {
+    card.style.display = card.innerText.toLowerCase().includes(q)
+      ? 'block'
+      : 'none';
+  });
+}
+
+function openSupport(){
+  document.getElementById('supportBox').classList.remove('hidden');
+}
+
+function closeSupport(){
+  document.getElementById('supportBox').classList.add('hidden');
+}
+
+function sendSupport(){
+  const input = document.getElementById('supportInput');
+  const msg = input.value.trim();
+  if(!msg) return;
+
+  addMsg("You", msg);
+  input.value = "";
+
+  let reply = "I can help explain how TrapSense works.";
+
+  if(msg.toLowerCase().includes("track")){
+    reply = "Tracks only appear when you search for them.";
+  }
+  else if(msg.toLowerCase().includes("bet")){
+    reply = "TrapSense does not provide betting advice or predictions.";
+  }
+
+  setTimeout(()=>addMsg("Support", reply), 400);
+}
+
+function addMsg(sender,text){
+  const box = document.getElementById('supportMessages');
+  const div = document.createElement('div');
+  div.innerHTML = `<strong>${sender}:</strong> ${text}`;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+</script>
+
+</body>
+</html>

@@ -21,6 +21,7 @@ header{
   background:#121826;
   border-bottom:1px solid #1f2933;
 }
+
 header h1{margin:0;font-size:2rem;}
 header p{margin-top:8px;color:#9ca3af;font-size:.9rem;}
 
@@ -28,6 +29,7 @@ header p{margin-top:8px;color:#9ca3af;font-size:.9rem;}
   padding:14px 16px;
   border-bottom:1px solid #1f2933;
 }
+
 .search input{
   width:100%;
   padding:14px;
@@ -69,18 +71,18 @@ footer{
   border-top:1px solid #1f2933;
 }
 
-/* SIDE AI SUPPORT */
+/* AI SUPPORT */
 #supportTab{
   position:fixed;
-  top:40%;
+  top:45%;
   right:0;
   background:#2563eb;
   color:white;
-  padding:10px 12px;
+  padding:12px 14px;
   border-radius:12px 0 0 12px;
+  font-size:.85rem;
   cursor:pointer;
-  font-size:.8rem;
-  z-index:100;
+  z-index:9999;
 }
 
 #supportBox{
@@ -93,7 +95,7 @@ footer{
   border-left:1px solid #1f2933;
   display:flex;
   flex-direction:column;
-  z-index:101;
+  z-index:10000;
 }
 
 .support-header{
@@ -108,7 +110,7 @@ footer{
 #supportMessages{
   padding:12px;
   flex:1;
-  overflow:auto;
+  overflow-y:auto;
   font-size:.8rem;
 }
 
@@ -119,9 +121,12 @@ footer{
 #supportInput{
   border:none;
   border-top:1px solid #1f2933;
-  padding:12px;
+  padding:14px;
   background:#020617;
   color:white;
+  font-size:1rem;
+  outline:none;
+  touch-action:manipulation;
 }
 </style>
 </head>
@@ -134,17 +139,11 @@ footer{
 </header>
 
 <div class="search">
-  <input
-    type="text"
-    id="searchBox"
-    placeholder="Search a greyhound track…"
-    oninput="filterTracks()"
-  >
+  <input id="searchBox" placeholder="Search a greyhound track…" oninput="filterTracks()">
 </div>
 
 <section id="tracks" class="section hidden">
   <p class="note">Matching tracks:</p>
-
   <div class="card">Romford — Major GBGB-licensed stadium in Essex.</div>
   <div class="card">Monmore Green — Historic Midlands championship venue.</div>
   <div class="card">Sheffield (Owlerton) — One of Britain’s oldest tracks.</div>
@@ -160,73 +159,71 @@ footer{
   TrapSense • Informational reference only • No betting advice or analytics
 </footer>
 
-<!-- SIDE SUPPORT -->
-<div id="supportTab" onclick="openSupport()">Support</div>
+<!-- AI SUPPORT -->
+<div id="supportTab" onclick="openSupport()">AI Help</div>
 
 <div id="supportBox" class="hidden">
   <div class="support-header">
-    TrapSense Support
+    TrapSense AI Support
     <span onclick="closeSupport()">✕</span>
   </div>
   <div id="supportMessages"></div>
-  <input id="supportInput" placeholder="Ask a question…" onkeydown="if(event.key==='Enter')sendSupport()">
+  <input
+    id="supportInput"
+    placeholder="Type your question…"
+    onkeydown="if(event.key==='Enter')sendSupport()"
+  >
 </div>
 
 <script>
 function filterTracks(){
-  const q = document.getElementById('searchBox').value.toLowerCase().trim();
-  const section = document.getElementById('tracks');
+  const q = searchBox.value.toLowerCase().trim();
+  const section = tracks;
   const cards = section.querySelectorAll('.card');
 
-  if(q === ''){
+  if(!q){
     section.classList.add('hidden');
-    cards.forEach(c => c.style.display = 'none');
+    cards.forEach(c=>c.style.display='none');
     return;
   }
 
   section.classList.remove('hidden');
-
-  cards.forEach(card => {
-    card.style.display = card.innerText.toLowerCase().includes(q)
-      ? 'block'
-      : 'none';
+  cards.forEach(c=>{
+    c.style.display = c.innerText.toLowerCase().includes(q) ? 'block':'none';
   });
 }
 
 function openSupport(){
-  document.getElementById('supportBox').classList.remove('hidden');
+  supportBox.classList.remove('hidden');
+  setTimeout(()=>supportInput.focus(),300);
 }
 
 function closeSupport(){
-  document.getElementById('supportBox').classList.add('hidden');
+  supportBox.classList.add('hidden');
 }
 
 function sendSupport(){
-  const input = document.getElementById('supportInput');
-  const msg = input.value.trim();
+  const msg = supportInput.value.trim();
   if(!msg) return;
 
   addMsg("You", msg);
-  input.value = "";
+  supportInput.value = "";
 
   let reply = "I can help explain how TrapSense works.";
 
-  if(msg.toLowerCase().includes("track")){
-    reply = "Tracks only appear when you search for them.";
-  }
-  else if(msg.toLowerCase().includes("bet")){
-    reply = "TrapSense does not provide betting advice or predictions.";
-  }
+  if(msg.toLowerCase().includes("track"))
+    reply = "Tracks appear only when searched by name.";
+  else if(msg.toLowerCase().includes("bet"))
+    reply = "TrapSense does not provide betting tips or predictions.";
 
-  setTimeout(()=>addMsg("Support", reply), 400);
+  setTimeout(()=>addMsg("AI", reply),400);
 }
 
 function addMsg(sender,text){
-  const box = document.getElementById('supportMessages');
-  const div = document.createElement('div');
-  div.innerHTML = `<strong>${sender}:</strong> ${text}`;
-  box.appendChild(div);
-  box.scrollTop = box.scrollHeight;
+  const d=document.createElement("div");
+  d.innerHTML=`<strong>${sender}:</strong> ${text}`;
+  supportMessages.appendChild(d);
+  supportMessages.scrollTop=supportMessages.scrollHeight;
 }
 </script>
 

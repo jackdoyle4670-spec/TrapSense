@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>TrapSense | Greyhound Racing Reference</title>
+
+<meta name="description" content="TrapSense is an independent, neutral reference platform for greyhound racing tracks and governance in the UK and Ireland.">
+
+<style>
+:root{
+  --bg:#f4f6fb;
+  --panel:#ffffff;
+  --border:#e5e7eb;
+  --text:#111827;
+  --muted:#6b7280;
+  --accent:#0f766e;
+  --accent-soft:#ccfbf1;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+/* Header */
+header{
+  background:var(--panel);
+  border-bottom:1px solid var(--border);
+}
+
+.header-inner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+header h1{
+  margin:0;
+  font-size:1.6rem;
+  font-weight:600;
+}
+
+header p{
+  margin:0;
+  font-size:.9rem;
+  color:var(--muted);
+}
+
+/* Navigation */
+nav{
+  background:var(--panel);
+  border-bottom:1px solid var(--border);
+}
+
+.nav-inner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 22px;
+}
+
+nav ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  gap:18px;
+  overflow-x:auto;
+}
+
+nav a{
+  display:block;
+  padding:14px 0;
+  font-size:.9rem;
+  color:var(--text);
+  text-decoration:none;
+  border-bottom:2px solid transparent;
+}
+
+nav a:hover{
+  border-color:var(--accent);
+}
+
+/* Main */
+main{
+  max-width:1100px;
+  margin:0 auto;
+  padding:32px 22px;
+}
+
+section{
+  margin-bottom:36px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid

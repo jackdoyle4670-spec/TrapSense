@@ -4,129 +4,147 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>TrapSense – Greyhound Track Directory</title>
+<title>TrapSense | Greyhound Racing Reference</title>
 
-<meta name="description" content="TrapSense is an independent greyhound racing reference platform covering UK and Irish tracks. Search to view neutral, factual track information.">
+<meta name="description" content="TrapSense is an independent reference platform providing neutral information on greyhound racing venues in the UK and Ireland.">
 
 <style>
+:root{
+  --bg-main:#0b0d13;
+  --bg-panel:#111827;
+  --bg-soft:#0f172a;
+  --border:#1f2937;
+  --text-main:#e5e7eb;
+  --text-muted:#9ca3af;
+  --accent:#334155;
+}
+
+*{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-  background:#0e1016;
-  color:#e5e7eb;
+  background:var(--bg-main);
+  color:var(--text-main);
+  line-height:1.6;
+}
+
+.wrapper{
+  max-width:860px;
+  margin:0 auto;
+  padding:0 20px;
 }
 
 header{
-  padding:24px 16px;
-  background:#121826;
-  border-bottom:1px solid #1f2933;
+  background:var(--bg-panel);
+  border-bottom:1px solid var(--border);
 }
 
-header h1{margin:0;font-size:2rem;}
-header p{margin-top:8px;color:#9ca3af;font-size:.9rem;}
-
-.search{
-  padding:14px 16px;
-  border-bottom:1px solid #1f2933;
+header .wrapper{
+  padding:28px 20px 24px;
 }
 
-.search input{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:none;
-  background:#1b1f2a;
-  color:#fff;
-  font-size:1rem;
+header h1{
+  margin:0;
+  font-size:1.6rem;
+  font-weight:600;
+  letter-spacing:.3px;
 }
 
-.section{
-  padding:20px 16px;
+header p{
+  margin:6px 0 0;
+  color:var(--text-muted);
+  font-size:.9rem;
 }
 
-.note{
-  color:#9ca3af;
-  font-size:.85rem;
-  margin-bottom:16px;
+main{
+  padding:36px 0;
 }
 
-.card{
-  background:#151923;
-  border:1px solid #1f2933;
+main p{
+  color:var(--text-muted);
+  font-size:.95rem;
+}
+
+.info-box{
+  background:var(--bg-soft);
+  border:1px solid var(--border);
   border-radius:14px;
-  padding:14px;
-  margin-bottom:12px;
-}
-
-.hidden{
-  display:none !important;
+  padding:22px;
 }
 
 footer{
-  padding:20px 16px;
-  text-align:center;
-  font-size:.75rem;
-  color:#9ca3af;
-  background:#07080c;
-  border-top:1px solid #1f2933;
+  background:#05060a;
+  border-top:1px solid var(--border);
+  padding:18px 0;
+  margin-top:40px;
 }
 
-/* AI SUPPORT */
+footer p{
+  text-align:center;
+  font-size:.75rem;
+  color:var(--text-muted);
+  margin:0;
+}
+
+/* SUPPORT ASSISTANT */
 #supportTab{
   position:fixed;
-  top:45%;
   right:0;
-  background:#2563eb;
+  top:45%;
+  background:var(--accent);
   color:white;
   padding:12px 14px;
-  border-radius:12px 0 0 12px;
-  font-size:.85rem;
+  font-size:.8rem;
+  border-radius:10px 0 0 10px;
   cursor:pointer;
-  z-index:9999;
+  z-index:999;
 }
 
 #supportBox{
   position:fixed;
   top:0;
   right:0;
-  width:300px;
+  width:340px;
   height:100%;
-  background:#0f172a;
-  border-left:1px solid #1f2933;
+  background:var(--bg-panel);
+  border-left:1px solid var(--border);
   display:flex;
   flex-direction:column;
-  z-index:10000;
+  z-index:1000;
 }
 
+.hidden{display:none}
+
 .support-header{
-  padding:12px;
+  padding:14px 16px;
   background:#020617;
+  border-bottom:1px solid var(--border);
+  font-size:.85rem;
+  font-weight:500;
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  font-size:.85rem;
 }
 
 #supportMessages{
-  padding:12px;
+  padding:16px;
   flex:1;
   overflow-y:auto;
-  font-size:.8rem;
+  font-size:.85rem;
 }
 
 #supportMessages div{
-  margin-bottom:8px;
+  margin-bottom:12px;
 }
 
 #supportInput{
   border:none;
-  border-top:1px solid #1f2933;
-  padding:14px;
+  border-top:1px solid var(--border);
   background:#020617;
   color:white;
-  font-size:1rem;
+  padding:14px 16px;
+  font-size:.9rem;
   outline:none;
-  touch-action:manipulation;
 }
 </style>
 </head>
@@ -134,68 +152,63 @@ footer{
 <body>
 
 <header>
-  <h1>TrapSense</h1>
-  <p>Independent greyhound racing track reference for the UK & Ireland.</p>
+  <div class="wrapper">
+    <h1>TrapSense</h1>
+    <p>Independent greyhound racing reference • UK & Ireland</p>
+  </div>
 </header>
 
-<div class="search">
-  <input id="searchBox" placeholder="Search a greyhound track…" oninput="filterTracks()">
-</div>
-
-<section id="tracks" class="section hidden">
-  <p class="note">Matching tracks:</p>
-  <div class="card">Romford — Major GBGB-licensed stadium in Essex.</div>
-  <div class="card">Monmore Green — Historic Midlands championship venue.</div>
-  <div class="card">Sheffield (Owlerton) — One of Britain’s oldest tracks.</div>
-  <div class="card">Nottingham — Licensed multi-purpose greyhound venue.</div>
-  <div class="card">Oxford — Reopened licensed track with modern facilities.</div>
-  <div class="card">Shelbourne Park — Flagship Irish greyhound stadium.</div>
-  <div class="card">Cork (Curraheen Park) — Southern Ireland racing venue.</div>
-  <div class="card">Galway — Western Ireland greyhound stadium.</div>
-  <div class="card">Drumbo Park — Northern Ireland’s main licensed track.</div>
-</section>
+<main>
+  <div class="wrapper">
+    <div class="info-box">
+      <p>
+        TrapSense is an independent informational platform providing neutral reference
+        material related to greyhound racing venues and governance.
+      </p>
+      <p>
+        The platform does not offer betting advice, predictions, analytical tools,
+        or endorsements. All content is presented for general informational purposes only.
+      </p>
+    </div>
+  </div>
+</main>
 
 <footer>
-  TrapSense • Informational reference only • No betting advice or analytics
+  <p>TrapSense • Reference information only • No betting or advisory services</p>
 </footer>
 
-<!-- AI SUPPORT -->
-<div id="supportTab" onclick="openSupport()">AI Help</div>
+<!-- SUPPORT ASSISTANT -->
+<div id="supportTab" onclick="openSupport()">Support</div>
 
 <div id="supportBox" class="hidden">
   <div class="support-header">
-    TrapSense AI Support
-    <span onclick="closeSupport()">✕</span>
+    Support Assistant
+    <span style="cursor:pointer" onclick="closeSupport()">✕</span>
   </div>
+
   <div id="supportMessages"></div>
+
   <input
     id="supportInput"
-    placeholder="Type your question…"
+    placeholder="Enter a support question…"
     onkeydown="if(event.key==='Enter')sendSupport()"
   >
 </div>
 
 <script>
-function filterTracks(){
-  const q = searchBox.value.toLowerCase().trim();
-  const section = tracks;
-  const cards = section.querySelectorAll('.card');
-
-  if(!q){
-    section.classList.add('hidden');
-    cards.forEach(c=>c.style.display='none');
-    return;
-  }
-
-  section.classList.remove('hidden');
-  cards.forEach(c=>{
-    c.style.display = c.innerText.toLowerCase().includes(q) ? 'block':'none';
-  });
-}
+let greeted=false;
 
 function openSupport(){
   supportBox.classList.remove('hidden');
-  setTimeout(()=>supportInput.focus(),300);
+  setTimeout(()=>supportInput.focus(),200);
+
+  if(!greeted){
+    addMsg(
+      "Assistant",
+      "This support assistant can answer general questions about TrapSense, its purpose, and how information is presented."
+    );
+    greeted=true;
+  }
 }
 
 function closeSupport(){
@@ -203,20 +216,26 @@ function closeSupport(){
 }
 
 function sendSupport(){
-  const msg = supportInput.value.trim();
+  const msg=supportInput.value.trim();
   if(!msg) return;
 
-  addMsg("You", msg);
-  supportInput.value = "";
+  addMsg("You",msg);
+  supportInput.value="";
 
-  let reply = "I can help explain how TrapSense works.";
+  const q=msg.toLowerCase();
+  let reply="TrapSense provides neutral reference information only.";
 
-  if(msg.toLowerCase().includes("track"))
-    reply = "Tracks appear only when searched by name.";
-  else if(msg.toLowerCase().includes("bet"))
-    reply = "TrapSense does not provide betting tips or predictions.";
+  if(q.includes("bet")||q.includes("tip")||q.includes("predict")){
+    reply="TrapSense does not provide betting advice, predictions, or performance analysis.";
+  }
+  else if(q.includes("track")){
+    reply="Track-related content on TrapSense is factual and non-opinionated, intended for reference purposes only.";
+  }
+  else if(q.includes("about")||q.includes("what is")){
+    reply="TrapSense is an independent greyhound racing reference platform covering the UK and Ireland.";
+  }
 
-  setTimeout(()=>addMsg("AI", reply),400);
+  setTimeout(()=>addMsg("Assistant",reply),350);
 }
 
 function addMsg(sender,text){
